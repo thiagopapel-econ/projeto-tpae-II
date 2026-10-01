@@ -47,4 +47,4 @@ Pontos a verificar (cobertura municipal, identificação de porte, último ano d
 Plano de pesquisa em elaboração (Entrega 3). Coleta e tratamento de dados em estado inicial.
 
 ## Contato acadêmico
-[contato acadêmico – tffo@academico.ufpb.br]
+contato acadêmico – tffo@academico.ufpb.br
