@@ -1,0 +1,65 @@
+﻿tabela,variavel,tipo,unidade,descricao,origem_ou_formula
+exportacoes_municipio_produto_2021_2025,uf_sigla,texto,-,Sigla da UF do município,Base 1: sufixo ' - UF' de 'Município'; conferida com 'UF do Município'
+exportacoes_municipio_produto_2021_2025,municipio_nome,texto,-,Nome do município (sem o sufixo de UF),"Base 1: 'Município' sem ' - UF', espaços normalizados"
+exportacoes_municipio_produto_2021_2025,municipio_chave,texto,-,Chave de relacionamento entre as bases: nome sem acento e em minúsculas + '|' + UF (ex.: 'campina grande|pb'). Não é o código IBGE (ausente nas fontes),derivada de municipio_nome e uf_sigla
+exportacoes_municipio_produto_2021_2025,sh4,texto (4 dígitos),-,Código SH4 (Sistema Harmonizado). Guardado como TEXTO para preservar zeros à esquerda (ler com dtype=str),'Código SH4' padronizado com 4 dígitos
+exportacoes_municipio_produto_2021_2025,descricao_sh4,texto,-,Descrição oficial da posição SH4 (uma por código),"'Descrição SH4', espaços normalizados"
+exportacoes_municipio_produto_2021_2025,capitulo_sh2,texto (2 dígitos),-,Capítulo do SH (dois primeiros dígitos do SH4),sh4[:2]
+exportacoes_municipio_produto_2021_2025,ano,inteiro,ano,"Ano de referência (2021 a 2025, anos completos)",ano extraído do nome das colunas '<ano> - ...'
+exportacoes_municipio_produto_2021_2025,valor_fob_usd,inteiro,US$ FOB correntes,"Valor exportado (nominal, sem deflacionar)",coluna '<ano> - Valor US$ FOB'
+exportacoes_municipio_produto_2021_2025,kg_liquido,inteiro,quilograma,Peso líquido exportado,coluna '<ano> - Quilograma Líquido'
+exportacoes_municipio_produto_2021_2025,preco_medio_usd_kg,decimal,US$ por kg,Preço médio implícito; vazio quando kg_liquido = 0 (indefinido). Comparável apenas dentro do mesmo SH4,valor_fob_usd / kg_liquido (se kg_liquido > 0)
+exportacoes_municipio_produto_2021_2025,part_produto_no_municipio_ano_pct,decimal,%,Participação do produto no FOB do município no ano,100 * valor_fob_usd / soma do FOB do município no ano
+exportacoes_municipio_pais_2026,uf_sigla,texto,-,Sigla da UF do município,Base 2: sufixo ' - UF' de 'Município'; conferida com 'UF do Município'
+exportacoes_municipio_pais_2026,municipio_nome,texto,-,Nome do município (sem o sufixo de UF),"Base 2: 'Município' sem ' - UF', espaços normalizados"
+exportacoes_municipio_pais_2026,municipio_chave,texto,-,Chave de relacionamento entre as bases: nome sem acento e em minúsculas + '|' + UF (ex.: 'campina grande|pb'). Não é o código IBGE (ausente nas fontes),derivada de municipio_nome e uf_sigla
+exportacoes_municipio_pais_2026,pais,texto,-,"País de destino, grafia da fonte (sem código ISO nas planilhas)","'País', espaços normalizados"
+exportacoes_municipio_pais_2026,ano,inteiro,ano,Ano de referência (2026) — período possivelmente parcial,ano das colunas '2026 - ...'
+exportacoes_municipio_pais_2026,valor_fob_usd,inteiro,US$ FOB correntes,Valor exportado no período,coluna '2026 - Valor US$ FOB'
+exportacoes_municipio_pais_2026,kg_liquido,inteiro,quilograma,Peso líquido exportado no período,coluna '2026 - Quilograma Líquido'
+exportacoes_municipio_pais_2026,preco_medio_usd_kg,decimal,US$ por kg,Preço médio implícito; vazio quando kg_liquido = 0,valor_fob_usd / kg_liquido (se kg_liquido > 0)
+exportacoes_municipio_pais_2026,part_pais_no_municipio_pct,decimal,%,Participação do país no FOB do município em 2026,100 * valor_fob_usd / soma do FOB do município
+exportacoes_municipio_pais_2026,part_no_total_estado_2026_pct,decimal,%,Participação do par município-país no FOB total da Paraíba em 2026,100 * valor_fob_usd / soma do FOB de 2026
+exportacoes_municipio_pais_2026,periodo_possivelmente_parcial,lógico,-,True quando a extração (22/10/2026) ocorreu antes do fim do ano: não comparar diretamente com anos completos,data da extração < 31/12 do ano
+exportacoes_municipio_ano,uf_sigla,texto,-,Sigla da UF do município,Bases 1 e 2: sufixo ' - UF' de 'Município'; conferida com 'UF do Município'
+exportacoes_municipio_ano,municipio_nome,texto,-,Nome do município (sem o sufixo de UF),"Bases 1 e 2: 'Município' sem ' - UF', espaços normalizados"
+exportacoes_municipio_ano,municipio_chave,texto,-,Chave de relacionamento entre as bases: nome sem acento e em minúsculas + '|' + UF (ex.: 'campina grande|pb'). Não é o código IBGE (ausente nas fontes),derivada de municipio_nome e uf_sigla
+exportacoes_municipio_ano,ano,inteiro,ano,Ano de referência (2021 a 2026),tbl_mun_produto e tbl_mun_pais
+exportacoes_municipio_ano,base_origem,texto,-,Base de onde vem o total do ano (2021-2025: base 1; 2026: base 2),constante por ano
+exportacoes_municipio_ano,valor_fob_usd,inteiro,US$ FOB correntes,Total exportado pelo município no ano,soma de valor_fob_usd da tabela de fato
+exportacoes_municipio_ano,kg_liquido,inteiro,quilograma,Peso líquido total do município no ano,soma de kg_liquido da tabela de fato
+exportacoes_municipio_ano,preco_medio_usd_kg,decimal,US$ por kg,Razão dos totais (média ponderada); vazio quando kg = 0,valor_fob_usd / kg_liquido (se kg > 0)
+exportacoes_municipio_ano,part_municipio_no_total_ano_pct,decimal,%,Participação do município no FOB total da Paraíba no ano,100 * valor_fob_usd / soma do FOB do ano
+exportacoes_municipio_ano,periodo_possivelmente_parcial,lógico,-,True para 2026 (possivelmente parcial),data da extração < 31/12 do ano
+exportacoes_municipio_consolidado,uf_sigla,texto,-,Sigla da UF do município,Bases 1 e 2: sufixo ' - UF' de 'Município'; conferida com 'UF do Município'
+exportacoes_municipio_consolidado,municipio_nome,texto,-,Nome do município (sem o sufixo de UF),"Bases 1 e 2: 'Município' sem ' - UF', espaços normalizados"
+exportacoes_municipio_consolidado,municipio_chave,texto,-,Chave de relacionamento entre as bases: nome sem acento e em minúsculas + '|' + UF (ex.: 'campina grande|pb'). Não é o código IBGE (ausente nas fontes),derivada de municipio_nome e uf_sigla
+exportacoes_municipio_consolidado,presenca_bases,texto,-,"Presença do município: 'Ambas as bases', 'Somente 2021-2025 (base 1)' ou 'Somente 2026 (base 2)'",união (outer join um-para-um) das chaves; indicator=True
+exportacoes_municipio_consolidado,fob_2021,inteiro anulável,US$ FOB correntes,FOB do município em 2021; vazio = sem registro no ano (não é zero),soma de tbl_mun_produto em 2021
+exportacoes_municipio_consolidado,fob_2022,inteiro anulável,US$ FOB correntes,FOB do município em 2022; vazio = sem registro no ano (não é zero),soma de tbl_mun_produto em 2022
+exportacoes_municipio_consolidado,fob_2023,inteiro anulável,US$ FOB correntes,FOB do município em 2023; vazio = sem registro no ano (não é zero),soma de tbl_mun_produto em 2023
+exportacoes_municipio_consolidado,fob_2024,inteiro anulável,US$ FOB correntes,FOB do município em 2024; vazio = sem registro no ano (não é zero),soma de tbl_mun_produto em 2024
+exportacoes_municipio_consolidado,fob_2025,inteiro anulável,US$ FOB correntes,FOB do município em 2025; vazio = sem registro no ano (não é zero),soma de tbl_mun_produto em 2025
+exportacoes_municipio_consolidado,kg_2021,inteiro anulável,quilograma,Peso líquido do município em 2021; vazio = sem registro,soma de tbl_mun_produto em 2021
+exportacoes_municipio_consolidado,kg_2022,inteiro anulável,quilograma,Peso líquido do município em 2022; vazio = sem registro,soma de tbl_mun_produto em 2022
+exportacoes_municipio_consolidado,kg_2023,inteiro anulável,quilograma,Peso líquido do município em 2023; vazio = sem registro,soma de tbl_mun_produto em 2023
+exportacoes_municipio_consolidado,kg_2024,inteiro anulável,quilograma,Peso líquido do município em 2024; vazio = sem registro,soma de tbl_mun_produto em 2024
+exportacoes_municipio_consolidado,kg_2025,inteiro anulável,quilograma,Peso líquido do município em 2025; vazio = sem registro,soma de tbl_mun_produto em 2025
+exportacoes_municipio_consolidado,fob_total_2021_2025,inteiro anulável,US$ FOB correntes,FOB acumulado 2021-2025,soma de fob_2021..fob_2025 (anos sem registro ignorados)
+exportacoes_municipio_consolidado,kg_total_2021_2025,inteiro anulável,quilograma,Peso líquido acumulado 2021-2025,soma de kg_2021..kg_2025
+exportacoes_municipio_consolidado,preco_medio_2021_2025_usd_kg,decimal,US$ por kg,Preço médio ponderado do período (razão dos totais),fob_total_2021_2025 / kg_total_2021_2025
+exportacoes_municipio_consolidado,part_estado_fob_2021_2025_pct,decimal,%,Participação do município no FOB acumulado da Paraíba (2021-2025),100 * fob_total_2021_2025 / soma
+exportacoes_municipio_consolidado,rank_fob_2021_2025,inteiro anulável,posição,Ranking por FOB acumulado 2021-2025 (1 = maior),"rank decrescente, método 'min'"
+exportacoes_municipio_consolidado,anos_com_registro_2021_2025,inteiro anulável,anos,Nº de anos (2021-2025) com algum registro de exportação,contagem de fob_<ano> não vazios
+exportacoes_municipio_consolidado,n_produtos_sh4_2021_2025,inteiro anulável,unidades,Nº de produtos SH4 distintos com registro em 2021-2025,contagem distinta de sh4 em tbl_mun_produto
+exportacoes_municipio_consolidado,produto_principal_sh4,texto (4 dígitos),-,SH4 de maior FOB acumulado 2021-2025 no município (desempate: menor código),argmax por município
+exportacoes_municipio_consolidado,produto_principal_descricao,texto,-,Descrição do produto principal,descricao_sh4 do produto principal
+exportacoes_municipio_consolidado,part_produto_principal_pct,decimal,%,Participação do produto principal no FOB acumulado do município,100 * FOB do produto / fob_total_2021_2025
+exportacoes_municipio_consolidado,fob_2026,inteiro anulável,US$ FOB correntes,FOB de 2026 (possivelmente parcial); vazio = sem registro na base 2 (não é zero),soma de tbl_mun_pais
+exportacoes_municipio_consolidado,kg_2026,inteiro anulável,quilograma,Peso líquido de 2026 (possivelmente parcial),soma de tbl_mun_pais
+exportacoes_municipio_consolidado,preco_medio_2026_usd_kg,decimal,US$ por kg,Preço médio ponderado de 2026,fob_2026 / kg_2026 (se kg > 0)
+exportacoes_municipio_consolidado,part_estado_fob_2026_pct,decimal,%,Participação do município no FOB de 2026 da Paraíba,100 * fob_2026 / soma
+exportacoes_municipio_consolidado,rank_fob_2026,inteiro anulável,posição,Ranking por FOB de 2026 (1 = maior),"rank decrescente, método 'min'"
+exportacoes_municipio_consolidado,n_paises_2026,inteiro anulável,unidades,Nº de países de destino distintos em 2026,contagem distinta de pais em tbl_mun_pais
+exportacoes_municipio_consolidado,pais_principal_2026,texto,-,País de maior FOB em 2026 para o município (desempate: ordem alfabética),argmax por município
+exportacoes_municipio_consolidado,part_pais_principal_pct,decimal,%,Participação do país principal no FOB 2026 do município,100 * FOB do país / fob_2026
