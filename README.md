@@ -11,7 +11,9 @@ Este repositório contém os dados, códigos e relatórios do projeto focado na 
 Equipe (Nº 03)
 
 Thiago Fernandes Ferreira de Oliveira (Contato: tffo@academico.ufpb.br)
+
 Matheus Lima Fonseca
+
 Matheus Guilherme da Silva Lima
 
 Problema e Pergunta de Pesquisa
@@ -25,8 +27,11 @@ Objetivos
 Descrever, com base em dados públicos e fontes documentais, a atividade exportadora da Paraíba e as condições de acesso das PMEs, produzindo um roteiro de apoio prático à preparação de empresários. O projeto adota uma abordagem descritiva e exploratória, sem pretensões de inferência causal.
 
 O roteiro documental abrangerá conceitos fundamentais do comércio exterior exigidos para o planejamento logístico, como:
+
 Documentação Básica: Fatura Proforma, Fatura Comercial, Romaneio de Embarque (Packing List), e Conhecimento de Embarque (como B/L e AWB).
+
 Logística e Seguros: Estruturação de fretes internacionais (marítimo, aéreo, rodoviário) e coberturas de seguro internacional.
+
 Termos de Comércio (Incoterms 2020): Definição de responsabilidades de custos e riscos (como EXW, FOB, CIF, e DPU) essenciais para a formatação de preços competitivos.
 
 Metodologia e Fontes de Dados
@@ -34,10 +39,15 @@ Metodologia e Fontes de Dados
 O tratamento de dados estatísticos e a modelagem exploratória estão sendo conduzidos em ambientes Google Colab, utilizando Python para processamento analítico na pasta de códigos. O fluxo garante reprodutibilidade, preservando os dados originais e documentando todas as transformações sem intervenção manual.
 
 As bases de dados e fontes documentais utilizadas incluem:
+
 Comex Stat (MDIC): Exportações por município, produto e destino. Arquivos de histórico municipal já anexados à base (ex: H_EXPORTACAO_POR_MUNICIPIO_2021-01_2025-12_DT20261022.xlsx e H_EXPORTACAO_POR_MUNICIPIO_2026-01_2026-12_DT20261022.xlsx).
+
 RAIS: Dados sobre estabelecimentos, vínculos empregatícios e remuneração.
+
 Cadastro de CNPJ (Receita Federal): Dados abertos para identificação de porte e setor das empresas.
+
 IBGE: Indicadores de população, PIB (contas regionais) e cadastro de empresas.
+
 Documentação Institucional: Manuais do Sebrae, Apex-Brasil, MDIC e Portal Único Siscomex.
 
 Estrutura do Repositório
@@ -64,8 +74,11 @@ Status dos Dados: As bases brutas do histórico do Comex Stat de 2021 a 2026 for
 Principais artefatos da entrega atual:
 
 Base Processada: Quatro novos arquivos CSV (exportações por município/produto, município/ano, município/país e consolidado) prontos para análise.
+
 Relatório de Qualidade: Documento E05_equipe03_qualidade_dados.pdf detalhando os problemas encontrados (ex: zeros estruturais, granularidade das bases) e as decisões aplicadas.
+
 Dicionário de Dados: Documentação atualizada referenciando as novas colunas e as tipagens corretas (ex: SH4 lido como texto).
+
 Notebook: Executável de ponta a ponta sem intervenções manuais, realizando 57 testes de integridade para validação (100% aprovados).
 
 Próximos passos: Iniciar as análises exploratórias da base processada e o cruzamento com as tabelas de CNPJ e RAIS para traçar o perfil das PMEs no estado.
